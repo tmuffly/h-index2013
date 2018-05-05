@@ -6,6 +6,8 @@ library(tidyverse)
 
 # Make a list of Google Scholar ids of the academics in the department
 id <- c("3D2VR5QAAAAJ", "wv1o_1IAAAAJ")
+
+
 n    <- length(id)
 # Loop through the list of ids & save numbered objects (prefix 'a') 
 # containing name & h-index of each academic
@@ -23,14 +25,26 @@ for (i in 1:n) {
   df$c2013 <- 0
   au <- id[i]
   m <- nrow(df)
+# Show progress in terms of author and current time 
+  print(paste(i, Sys.time(), sep = ": "))
+# Take a 10 second break after the loop to avoid getting blocked by Google Scholar
+    Sys.sleep(10) 
+  
   for (j in 1:m) {
+# Get total citations from 2013 for the jth paper of ith author    
     assign(paste("df", i, j, sep = ""), as_data_frame(get_article_cite_history(au, df$pubid[j])))
     
     df[j, 9] <-  get(paste("df", i, j, sep = "")) %>%
       filter(year > 2012) %>%
       summarize(sum(cites))
-    
+# Citation details of jth paper of ith author has been transfered to the author's dataframe
+# can delete df containing citation details of the jth paper   
     rm(list = (paste("df", i, j, sep = "")))
+    
+# Show progress in terms of author, paper and current time     
+    print(paste(i, j, Sys.time(), sep = ": "))
+# Take a 5 second break after the loop to avoid getting blocked by Google Scholar
+    Sys.sleep(5)
   }
   
 assign(paste("b", i, sep = ""), df)
