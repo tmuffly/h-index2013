@@ -1,11 +1,4 @@
-# Load the required packages.  Will install the package, 
-# if not already installed.
-if (!require(scholar))
-  install.packages('scholar')
-library(scholar)
-if (!require(tidyverse))
-  install.packages('tidyverse')
-library(tidyverse)
+
 # Steps
 # 1 - Make a list of Google scholar ids of the relevant authors and 
 #     assign them to id
@@ -73,8 +66,10 @@ for (i in 1:n) {
     # can delete df containing citation details of the jth paper
     rm(list = (paste("df", i, j, sep = "")))
     
-    # Show progress in terms of author, paper and current time
-    print(paste(i, j, Sys.time(), sep = ": "))
+    # Show progress (roughly every minute) 
+    # in terms of author, paper and current time
+    if(j%%15 ==0){print(paste(i, j, Sys.time(), sep = ": "))}
+    
     # Take a 4 second break after the loop to avoid getting blocked by Google Scholar
     Sys.sleep(4)
   }
@@ -104,4 +99,4 @@ dept_u <- dept_u[order(-dept_u$c2013), ]
 
 dept_h_index2013 <-
   max(dept_u$crank2013[which(dept_u$c2013 >= dept_u$crank2013)])
-dept_h_index2013
+print(dept_h_index2013)
