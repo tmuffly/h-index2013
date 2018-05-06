@@ -1,3 +1,6 @@
+# Author ids of BK & LA to see whether h2013-generic.R is working ok
+id <- c("3D2VR5QAAAAJ", "wv1o_1IAAAAJ")
+
 # Google scholar author ids - Dept of Public Health
 id <- c("mc3dJxsAAAAJ", "ASvjn0IAAAAJ", "tfhM6eQAAAAJ", "D7uvADUAAAAJ", 
         "3D2VR5QAAAAJ", "wv1o_1IAAAAJ", "QD_s8XwAAAAJ")
