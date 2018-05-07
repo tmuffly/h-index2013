@@ -70,8 +70,8 @@ for (i in 1:n) {
     # in terms of author, paper and current time
     if(j%%30 ==0){print(paste(i, j, Sys.time(), sep = ": "))}
     
-    # Take a 3 second break after the loop to avoid getting blocked by Google Scholar
-    Sys.sleep(3)
+    # Take a 4 second break after the loop to avoid getting blocked by Google Scholar
+    Sys.sleep(4)
   }
   
   assign(paste("b", i, sep = ""), df)
