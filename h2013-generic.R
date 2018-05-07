@@ -66,12 +66,12 @@ for (i in 1:n) {
     # can delete df containing citation details of the jth paper
     rm(list = (paste("df", i, j, sep = "")))
     
-    # Show progress (roughly every minute) 
+    # Show progress (roughly every 2 minutes) 
     # in terms of author, paper and current time
-    if(j%%15 ==0){print(paste(i, j, Sys.time(), sep = ": "))}
+    if(j%%30 ==0){print(paste(i, j, Sys.time(), sep = ": "))}
     
-    # Take a 4 second break after the loop to avoid getting blocked by Google Scholar
-    Sys.sleep(4)
+    # Take a 3 second break after the loop to avoid getting blocked by Google Scholar
+    Sys.sleep(3)
   }
   
   assign(paste("b", i, sep = ""), df)
@@ -99,4 +99,4 @@ dept_u <- dept_u[order(-dept_u$c2013), ]
 
 dept_h_index2013 <-
   max(dept_u$crank2013[which(dept_u$c2013 >= dept_u$crank2013)])
-print(dept_h_index2013)
+print(paste("Dept.H-index2013: ", dept_h_index2013))
