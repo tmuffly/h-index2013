@@ -9,8 +9,8 @@ library(tidyverse)
 
 
 rm(list = ls(envir = .GlobalEnv), envir = .GlobalEnv)
-# Author ids of BK & LA to see whether h2013-generic.R is working ok
-id <- c("3D2VR5QAAAAJ", "wv1o_1IAAAAJ")
+# Author ids of BK, MP & LA to see whether h2013-generic.R is working ok
+id <- c("3D2VR5QAAAAJ", "QD_s8XwAAAAJ", "wv1o_1IAAAAJ")
 source("h2013-generic.R")
 saveRDS(dept_u, "test13.rds")
 write.csv(dept_u, "test123.csv")
