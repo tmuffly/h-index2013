@@ -33,6 +33,7 @@ n    <- length(id)
 # containing publication & citation details of each academic
 
 for (i in 1:n) {
+  tryCatch({
   assign(paste("a", i, sep = ""), paste((get_profile(id[i])$name),
                                         ": h-index = ",
                                         (get_profile(id[i])$h_index)))
@@ -43,10 +44,12 @@ for (i in 1:n) {
            pagesize = 100,
            flush = FALSE
          ))
-  # discard the records with zero citations (citation id is missing - cid = NA)
-  df <- filter(df, cid != "NA")
   # insert a column (variable) named c2013 to hold the number of citations from 2013 - give an initial value of zero
   df$c2013 <- 0
+  
+  # discard the records with zero citations (citation id is missing - cid = NA)
+  df <- filter(df, cid != "NA")
+ 
   au <- id[i]
   m <- nrow(df)
   # Show progress in terms of author and current time
@@ -55,6 +58,7 @@ for (i in 1:n) {
   Sys.sleep(10)
   
   for (j in 1:m) {
+    tryCatch({
     # Get total citations from 2013 for the jth paper of ith author
     assign(paste("df", i, j, sep = ""),
            as_data_frame(get_article_cite_history(au, df$pubid[j])))
@@ -72,9 +76,11 @@ for (i in 1:n) {
     
     # Take a 4 second break after the loop to avoid getting blocked by Google Scholar
     Sys.sleep(4)
+    }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
   }
   
   assign(paste("b", i, sep = ""), df)
+  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
 }
 
 rm(df)
