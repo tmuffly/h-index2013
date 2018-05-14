@@ -140,7 +140,7 @@ write.csv(dept_u, "path13.csv")
 
 rm(list = ls(envir = .GlobalEnv), envir = .GlobalEnv)
 # Google scholar author ids - Dept of Pharmacology
-id <- c("rbV5ri8AAAAJ", "pQxesckAAAAJ", "_tEWn6oAAAAJ" , "POecS_wAAAAJ")
+id <- c("y7oxRjIAAAAJ", "rbV5ri8AAAAJ", "pQxesckAAAAJ", "_tEWn6oAAAAJ" , "POecS_wAAAAJ")
 source("h2013-generic.R")
 saveRDS(dept_u, "pharm13.rds")
 write.csv(dept_u, "pharm13.csv")
@@ -162,6 +162,6 @@ rm(list = ls(envir = .GlobalEnv), envir = .GlobalEnv)
 # Google scholar author ids - MMU
 id <- c("x34TRjYAAAAJ", "AjVlDW0AAAAJ")
 source("h2013-generic.R")
-saveRDS(dept_u, "mmu.rds")
-write.csv(dept_u, "mmu.csv")
+saveRDS(dept_u, "mmu13.rds")
+write.csv(dept_u, "mmu13.csv")
 
